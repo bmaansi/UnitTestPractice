@@ -1,5 +1,6 @@
 #include "Password.h"
 #include <string>
+#include <cctype>
 
 using std::string;
 
@@ -17,4 +18,36 @@ int Password::count_leading_characters(string phrase){
     index++;
   }
   return repetition;
+}
+
+
+bool Password::has_mixed_case(string password) {
+  int has_both = 0;
+  // for(char c : password) {
+  //   if (c > 97 && c < 122 ) {
+  //     has_both++;
+  //   } else if (c > 65 && c < 90){
+  //     has_both++;
+  //   }
+
+  //   // if (islower(c)) {
+  //   //   has_both++;
+  //   // } else if (isupper(c)) {
+  //   //   has_both++;
+  //   // }
+  // }
+
+  for(int i(0); i < password.length(); i++) {
+    if (islower(password[i])) {
+      has_both++;
+    } else if (password[i]) {
+      has_both++;
+    }
+  }
+
+  if (has_both == 2) {
+    return true;
+  } else  {
+    return false;
+  }
 }
